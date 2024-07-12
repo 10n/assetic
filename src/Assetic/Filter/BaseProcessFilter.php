@@ -49,7 +49,7 @@ abstract class BaseProcessFilter extends BaseFilter
     private $timeout;
 
     /**
-     * @var Process The initialized process object
+     * @var ?Process The initialized process object
      */
     private $process;
 
@@ -61,7 +61,7 @@ abstract class BaseProcessFilter extends BaseFilter
     /**
      * Constructor
      *
-     * @param string $binaryPath Path to the binary to use for this filter, overrides the default path
+     * @param ?string $binaryPath Path to the binary to use for this filter, overrides the default path
      */
     public function __construct($binaryPath = '')
     {
@@ -105,7 +105,7 @@ abstract class BaseProcessFilter extends BaseFilter
      * @param array $arguments An optional array of arguments
      * @return Process A new Process object
      */
-    protected function createProcess(array $arguments = [])
+    protected function createProcess(array $arguments = []): Process
     {
         $process = new Process($arguments, $this->workingDirectory);
 
@@ -118,10 +118,8 @@ abstract class BaseProcessFilter extends BaseFilter
 
     /**
      * Retrieves the process
-     *
-     * @return Process|null
      */
-    protected function getProcess()
+    protected function getProcess(): ?Process
     {
         return $this->process;
     }
@@ -261,7 +259,7 @@ abstract class BaseProcessFilter extends BaseFilter
      *
      * @return array
      */
-    protected function getPathArgs()
+    protected function getPathArgs(): array
     {
         return [$this->binaryPath];
     }

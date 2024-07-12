@@ -2,6 +2,8 @@
 
 namespace Assetic\Filter;
 
+use Symfony\Component\Process\Process;
+
 abstract class BaseNodeFilter extends BaseProcessFilter
 {
     /**
@@ -12,10 +14,8 @@ abstract class BaseNodeFilter extends BaseProcessFilter
     private $nodePaths = [];
 
     /**
-     * Constructor
-     *
      * @param string $binaryPath Path to the binary to use for this filter, overrides the default path
-     * @param mixed $nodeBinaryPath
+     * @param ?string $nodeBinaryPath
      */
     public function __construct($binaryPath = '', $nodeBinaryPath = null)
     {
@@ -28,10 +28,8 @@ abstract class BaseNodeFilter extends BaseProcessFilter
 
     /**
      * Get the arguments to be passed to the process regarding the process path
-     *
-     * @return array
      */
-    protected function getPathArgs()
+    protected function getPathArgs(): array
     {
         return $this->nodeBinaryPath
             ? [$this->nodeBinaryPath, $this->binaryPath]
@@ -72,7 +70,7 @@ abstract class BaseNodeFilter extends BaseProcessFilter
         $this->nodePaths[] = $nodePath;
     }
 
-    protected function createProcess(array $arguments = [])
+    protected function createProcess(array $arguments = []): Process
     {
         $pb = parent::createProcess($arguments);
 

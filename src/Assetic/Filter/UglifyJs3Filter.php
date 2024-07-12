@@ -87,7 +87,7 @@ class UglifyJs3Filter extends BaseNodeFilter
     /**
      * Run the asset through UglifyJs
      *
-     * @see Assetic\Filter\FilterInterface::filterDump()
+     * @see \Assetic\Filter\FilterInterface::filterDump()
      */
     public function filterDump(AssetInterface $asset)
     {

@@ -15,7 +15,7 @@ class FilterException extends \RuntimeException implements Exception
     private $originalMessage;
     private $input;
 
-    public static function fromProcess(Process $proc)
+    public static function fromProcess(Process $proc): self
     {
         $message = sprintf("An error occurred while running:\n%s", $proc->getCommandLine());
 
@@ -39,7 +39,7 @@ class FilterException extends \RuntimeException implements Exception
         $this->originalMessage = $message;
     }
 
-    public function setInput($input)
+    public function setInput($input): self
     {
         $this->input = $input;
         $this->updateMessage();
@@ -52,7 +52,7 @@ class FilterException extends \RuntimeException implements Exception
         return $this->input;
     }
 
-    private function updateMessage()
+    private function updateMessage(): void
     {
         $message = $this->originalMessage;
 
